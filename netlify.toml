@@ -1,0 +1,32 @@
+[build]
+  command = "npx expo export --platform web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
+
+# API proxy redirects — must come before the SPA catch-all
+
+[[redirects]]
+  from = "/api/ch/*"
+  to = "/.netlify/functions/proxy-ch/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/sg/*"
+  to = "/.netlify/functions/proxy-sg/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/sanctions/*"
+  to = "/.netlify/functions/proxy-sanctions/:splat"
+  status = 200
+
+# SPA catch-all for Expo Router client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

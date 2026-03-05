@@ -1,0 +1,3 @@
+Creation of app for KYC of your customers
+use standard KYC process
+use free apis that exists
