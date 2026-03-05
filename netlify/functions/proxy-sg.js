@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     return { statusCode: 204, headers: CORS_HEADERS };
   }
 
-  const path = event.path.replace('/.netlify/functions/proxy-sg', '') || '/';
+  const path = event.path.replace(/^\/(api\/sg|\.netlify\/functions\/proxy-sg)/, '') || '/';
   const qs = event.rawQuery ? `?${event.rawQuery}` : '';
   const targetUrl = `https://data.gov.sg${path}${qs}`;
 

@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     return { statusCode: 204, headers: CORS_HEADERS };
   }
 
-  const path = event.path.replace('/.netlify/functions/proxy-ch', '') || '/';
+  const path = event.path.replace(/^\/(api\/ch|\.netlify\/functions\/proxy-ch)/, '') || '/';
   const qs = event.rawQuery ? `?${event.rawQuery}` : '';
   const targetUrl = `https://api.company-information.service.gov.uk${path}${qs}`;
 
